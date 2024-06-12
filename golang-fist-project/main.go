@@ -1,12 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"fmt" // Package bawaan
 
-	"github.com/google/uuid"
+	"golang-first-project/greeting" // Package internal
+
+	"github.com/google/uuid" // Package external
 )
 
 func main() {
 	uuid, _ := uuid.NewV6()
 	fmt.Println(uuid)
+
+	greeting.Hello()
+	greeting.Hi()
 }
