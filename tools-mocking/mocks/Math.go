@@ -27,6 +27,34 @@ func (_m *Math) Add(n1 int, n2 int) int {
 	return r0
 }
 
+// Subtract provides a mock function with given fields: n1, n2
+func (_m *Math) Subtract(n1 int, n2 int) (int, error) {
+	ret := _m.Called(n1, n2)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Subtract")
+	}
+
+	var r0 int
+	var r1 error
+	if rf, ok := ret.Get(0).(func(int, int) (int, error)); ok {
+		return rf(n1, n2)
+	}
+	if rf, ok := ret.Get(0).(func(int, int) int); ok {
+		r0 = rf(n1, n2)
+	} else {
+		r0 = ret.Get(0).(int)
+	}
+
+	if rf, ok := ret.Get(1).(func(int, int) error); ok {
+		r1 = rf(n1, n2)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // NewMath creates a new instance of Math. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewMath(t interface {

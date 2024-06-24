@@ -18,7 +18,7 @@ func (c calculator) Count(n1, n2 int, op rune) (result int, err error) {
 	case '+':
 		result = c.math.Add(n1, n2)
 	case '-':
-		// TODO
+		result, err = c.math.Subtract(n1, n2)
 	case '*':
 		// TODO
 	case '/':
