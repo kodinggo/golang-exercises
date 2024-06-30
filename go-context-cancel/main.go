@@ -8,15 +8,18 @@ import (
 
 func main() {
 	ctx := context.Background()
-	ctx, cancel := context.WithCancel(ctx)
+	// ctx, cancel := context.WithCancel(ctx)
+	// ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+	ctx, cancel := context.WithDeadline(ctx, time.Now().Add(5*time.Second))
+	defer cancel()
 
 	go doSomething(ctx)
 
 	// cancel ctx setelah 5 detik
-	time.AfterFunc(5*time.Second, func() {
-		fmt.Println("process has been 5 seocnds, timeout!!!")
-		cancel()
-	})
+	// time.AfterFunc(5*time.Second, func() {
+	// 	fmt.Println("process has been 5 seocnds, timeout!!!")
+	// 	cancel()
+	// })
 
 	var s string
 	fmt.Scan(&s)
