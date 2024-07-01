@@ -25,7 +25,7 @@ var hiCMD = &cobra.Command{
 	Short: "hi is a command to say Hi!",
 	// Untuk validasi argument
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) < 2 {
+		if len(args) < 1 {
 			return errors.New("please input argument")
 		}
 		return nil
