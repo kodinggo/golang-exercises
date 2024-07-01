@@ -7,21 +7,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type bodyRequest struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
-}
-
-type queryString struct {
-	Sort    string `query:"sort"`
-	Keyword string `query:"keyword"`
-}
-
-type bodyResponse struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
-}
-
 type userHandler struct {
 }
 
@@ -69,4 +54,19 @@ func (h *userHandler) FindUserByID(c echo.Context) error {
 	id := c.Param("id")
 	qSort := c.QueryParam("sort")
 	return c.String(http.StatusOK, "find user ID="+id+", sort="+qSort)
+}
+
+type bodyRequest struct {
+	Name    string `json:"name"`
+	Address string `json:"address"`
+}
+
+type queryString struct {
+	Sort    string `query:"sort"`
+	Keyword string `query:"keyword"`
+}
+
+type bodyResponse struct {
+	Name    string `json:"name"`
+	Address string `json:"address"`
 }
