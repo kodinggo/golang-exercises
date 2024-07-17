@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package pb.greeting;
+
+option go_package="pb/greeting";
+
+import "google/protobuf/timestamp.proto";
+
+message Address {
+    string street = 1;
+    string city = 2;
+}
+
+message Person {
+    string name = 1 [deprecated=true];
+    int64 age = 2;
+    Gender gender = 3; 
+    int64 full_name = 4;
+    Address address = 5;
+    ContactInfo contact_info = 6;
+
+    message ContactInfo {
+        string email = 1;
+        string phone = 2;
+    }
+
+    oneof others {
+        string hobby = 7;
+        string job = 8;
+    }
+
+    repeated string phone_numbers = 9;
+    repeated Address addresses = 10;
+
+    google.protobuf.Timestamp created_at = 11;
+}
+
+enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+    UNKNOWN = 2;
+}
