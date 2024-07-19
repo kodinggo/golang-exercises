@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb.story;
+
+option go_package = "pb/story"; 
+
+// define entity
+message Story {
+    int64 id = 1;
+    string title = 2;
+    string content = 3; 
+}
+
+message Stories {
+    repeated Story stories = 1;
+}
