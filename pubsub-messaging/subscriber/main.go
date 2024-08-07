@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"pubsub-messaging/event"
 
@@ -28,9 +29,23 @@ func main() {
 
 func subscribeEvent(js nats.JetStreamContext) {
 	log.Println("waiting for the incoming events..")
-	// var paylaod event.Product
+	var paylaod event.Product
 
 	js.QueueSubscribe(event.CreateProductEvent, "test", func(msg *nats.Msg) {
 		log.Println(string(msg.Data))
+
+		err := json.Unmarshal(msg.Data, &paylaod)
+		if err != nil {
+			errHandler(err, dump(paylaod))
+		}
 	})
+}
+
+func errHandler(err error, payload any) {
+	// send to slack
+}
+
+func dump(payload any) []byte {
+	b, _ := json.Marshal(payload)
+	return b
 }
