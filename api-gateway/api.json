@@ -1,0 +1,56 @@
+{
+    "version": 3,
+    "port": 7777,
+    "endpoints": [
+        {
+            "endpoint": "/articles",
+            "method": "GET",
+            "backend": [
+                {
+                    "host": ["https://dummyjson.com"],
+                    "url_pattern": "/posts",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "endpoint": "/articles",
+            "method": "POST",
+            "backend": [
+                {
+                    "host": ["https://dummyjson.com"],
+                    "url_pattern": "/posts/add",
+                    "method": "POST"
+                }
+            ]
+        },
+        {
+            "endpoint": "/articles/{id}",
+            "method": "GET",
+            "backend": [
+                {
+                    "host": ["https://dummyjson.com"],
+                    "url_pattern": "/posts/{id}",
+                    "method": "GET",
+                    "group": "data"
+                }
+            ]
+        },
+        {
+            "endpoint": "/articles-comments/{id}",
+            "method": "GET",
+            "backend": [
+                {
+                    "host": ["https://dummyjson.com"],
+                    "url_pattern": "/posts/{id}",
+                    "method": "GET"
+                },
+                {
+                    "host": ["https://dummyjson.com"],
+                    "url_pattern": "/comments/{id}",
+                    "method": "GET"
+                }
+            ]
+        }
+    ]
+}
